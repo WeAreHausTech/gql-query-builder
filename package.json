@@ -16,7 +16,8 @@
     "watch": "tsc --watch",
     "lint": "tslint --format stylish --project .",
     "test": "jest --config",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "security:audit": "yarn npm audit -A -R --severity high --environment production"
   },
   "keywords": [
     "graphql",
