@@ -2,3 +2,9 @@
 gql-query-builder.code-workspace
 node_modules
 build
+
+# Yarn 4 transient state
+.yarn/install-state.gz
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml

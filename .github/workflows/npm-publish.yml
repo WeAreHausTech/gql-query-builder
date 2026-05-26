@@ -11,23 +11,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 12
-      - run: npm ci
+      - run: yarn install --immutable --check-cache
+      - name: Audit dependencies
+        continue-on-error: true
+        run: yarn npm audit -A -R --severity high --environment production
       - run: npm test
 
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
+      - run: yarn install --immutable --check-cache
       - run: npm run build
       - run: npm publish
         env:
